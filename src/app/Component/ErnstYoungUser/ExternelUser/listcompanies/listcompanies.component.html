@@ -1,0 +1,83 @@
+<app-sidebar></app-sidebar>
+<div class="ey-main-content">
+  <div class="ey-container">
+    <div class="card ey-theme">
+      <p-toast></p-toast>
+      <p-toolbar styleClass="mb-4"></p-toolbar>
+      <p-table #dt [value]="companies" [columns]="cols" responsiveLayout="scroll" [rows]="10"
+        [globalFilterFields]="['name', 'customerUsername', 'consultantUsernames']" [paginator]="true"
+        [rowsPerPageOptions]="rowsPerPageOptions" [showCurrentPageReport]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        selectionMode="multiple" [rowHover]="true" dataKey="id">
+        <ng-template pTemplate="caption">
+          <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+            <h5 class="m-0">Manage Companies</h5>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 20%">Name</th>
+            <th style="width: 20%">Customer Username</th>
+            <th style="width: 20%">Consultants</th>
+            <th style="width: 20%">Actions</th>
+            <th style="width: 20%">Response</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-company>
+          <tr>
+            <td>{{ company.name }}</td>
+            <td>{{ company.customerUsername }}</td>
+            <td>{{ company.consultantUsernames.join(', ') }}</td>
+            <td>
+              <button pButton type="button" class="p-button-rounded ey-button" icon="pi pi-user-edit" (click)="openAssignConsultantModal(company.id)" label="Assign Consultant"></button>
+            </td>
+            <td>
+              <button pButton type="button" class="p-button-rounded ey-button" icon="pi pi-file" (click)="openResponsesModal(company.id)" label="View Responses"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-dialog header="Assign Consultant" [(visible)]="displayAssignConsultantModal" [modal]="true" [style]="{width: '30vw'}">
+        <div class="field">
+          <label for="consultant">Consultant</label>
+          <p-dropdown [options]="consultants" [(ngModel)]="selectedConsultantId" optionLabel="username" placeholder="Select a Consultant" [optionValue]="'id'" [appendTo]="'body'"></p-dropdown>
+        </div>
+        <p-footer>
+          <button type="button" pButton class="p-button-rounded ey-button" label="Assign" (click)="assignConsultant()" [disabled]="!selectedConsultantId"></button>
+          <button type="button" pButton class="p-button-rounded ey-button" label="Cancel" (click)="displayAssignConsultantModal=false"></button>
+        </p-footer>
+      </p-dialog>      
+      <p-dialog header="Company Responses" [(visible)]="displayResponsesModal" [modal]="true" [style]="{width: '70vw'}">
+        <ng-container *ngFor="let form of responsesByForm | keyvalue">
+          <h4 (click)="toggleForm(form.key)" style="cursor: pointer;">
+            {{ form.key }}
+            <span *ngIf="expandedForms[form.key]">[-]</span>
+            <span *ngIf="!expandedForms[form.key]">[+]</span>
+          </h4>
+          <p-table *ngIf="expandedForms[form.key]" [value]="form.value" responsiveLayout="scroll">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>Question</th>
+                <th>Response</th>
+                <th>File</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-response>
+              <tr>
+                <td>{{ response.questionText }}</td>
+                <td>{{ response.responseText }}</td>
+                <td>
+                  <button *ngIf="response.fileId" pButton type="button" class="ey-button" icon="pi pi-download" (click)="downloadFile(response.fileId)" label="Download File"></button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </ng-container>
+        <p-footer>
+          <button type="button" pButton class="p-button-rounded ey-button" label="Close" (click)="displayResponsesModal=false"></button>
+          <button type="button" pButton class="p-button-rounded ey-button" label="Export All to PDF" (click)="exportResponsesByFormToPdf()"></button>
+        </p-footer>
+      </p-dialog>
+    </div>
+  </div>
+</div>

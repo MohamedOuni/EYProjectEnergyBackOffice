@@ -1,0 +1,90 @@
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .full-width-calendar {
+    width: 100%;
+  }
+  
+  .main-content {
+    padding: 20px;
+    margin-left: 250px;
+    background: linear-gradient(145deg, #ffffff, #f7f7f7);
+    min-height: 100vh;
+    color: #333;
+  }
+  
+  .p-datatable-customers {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow-x: auto;
+    background: #fff;
+  }
+  
+  .p-datatable-customers .p-datatable-thead > tr > th {
+    background: linear-gradient(145deg, #1a73e8, #4285f4);
+    color: #fff;
+    font-weight: bold;
+    padding: 8px;
+    border-bottom: 2px solid #ddd;
+    text-align: center;
+    font-size: 14px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  
+  .p-datatable-customers .p-datatable-tbody > tr > td {
+    padding: 8px;
+    vertical-align: middle;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+  }
+  
+  button[pButton] {
+    background-color: #6f42c1;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    font-size: 12px;
+    border-radius: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  button[pButton]:hover {
+    background-color: #563d7c;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .time-input {
+    width: 100%;
+    padding: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .status-assigned {
+    background-color: #28a745;
+}
+
+.status-pending {
+    background-color: #ffc107;
+    color: #333;
+}

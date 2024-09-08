@@ -1,0 +1,125 @@
+<app-sidebar></app-sidebar>
+<div class="ey-main-content">
+  <div class="ey-container">
+    <div class="card ey-theme">
+      <p-toast></p-toast>
+      <p-toolbar styleClass="mb-4">
+        <button pButton label="Create Publication" icon="pi pi-plus" class="ey-button p-mt-4"
+          (click)="openCreatePublicationDialog()"></button>
+      </p-toolbar>
+      <p-table [value]="publications" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[10, 20, 30]">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Title</th>
+            <th>Content</th>
+            <th>Files</th>
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-publication>
+          <tr>
+            <td style="word-break: break-word;">
+              <span *ngIf="publication.title.length <= 100">{{ publication.title }}</span>
+              <span *ngIf="publication.title.length > 100">
+                {{ publication.title | slice:0:100 }}...
+                <a href="#" (click)="showFullText($event, publication.title, 'Title')">Continuer de lire</a>
+              </span>
+            </td>
+            <td style="word-break: break-word;">
+              <span *ngIf="publication.content.length <= 60">{{ publication.content }}</span>
+              <span *ngIf="publication.content.length > 60">
+                {{ publication.content | slice:0:60 }}...
+                <a href="#" (click)="showFullText($event, publication.content, 'Content')">Continuer de lire</a>
+              </span>
+            </td>
+            <td>
+              <ul>
+                <li
+                  *ngFor="let fileId of publication.imageIds.concat(publication.videoIds, publication.pdfIds, publication.xlsIds, publication.docIds)">
+                  <a [href]="getFileUrl(fileId)" target="_blank">File</a>
+                </li>
+              </ul>
+            </td>
+            <td>
+              <button pButton icon="pi pi-pencil" class="p-button-rounded ey-button"
+                (click)="openEditPublicationDialog(publication)"></button>
+              <button pButton icon="pi pi-trash" class="p-button-rounded ey-button ey-button-danger"
+                (click)="confirmDeletePublication(publication)"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-dialog header="Create Publication" [(visible)]="createPublicationDialog" [modal]="true"
+        [style]="{ width: '80vw', maxWidth: '80vw' }">
+        <div class="p-fluid">
+          <form (ngSubmit)="createPublication()">
+            <div class="p-field">
+              <label for="title">Title</label>
+              <input id="title" type="text" pInputText [(ngModel)]="publication.title" name="title" required>
+            </div>
+            <div class="p-field">
+              <label for="content">Content</label>
+              <textarea id="content" pInputTextarea [(ngModel)]="publication.content" name="content" required
+                rows="10"></textarea>
+            </div>
+            <div class="p-field">
+              <label for="files">Select Files</label>
+              <input id="files" type="file" (change)="onFileChange($event)" multiple class="file-input">
+              <label for="files" class="custom-file-label">{{ selectedFilesText }}</label>
+            </div>
+            <div class="createPublication">
+              <button type="submit" pButton label="Create Publication" class="ey-button p-mt-2"></button>
+            </div>
+          </form>
+        </div>
+      </p-dialog>
+
+      <p-dialog header="Edit Publication" [(visible)]="editPublicationDialog" [modal]="true"
+        [style]="{ width: '80vw', maxWidth: '80vw' }">
+        <div class="p-fluid" *ngIf="selectedPublication">
+          <form (ngSubmit)="updatePublication()">
+            <div class="p-field">
+              <label for="edit-title">Title</label>
+              <input id="edit-title" type="text" pInputText [(ngModel)]="selectedPublication.title" name="edit-title"
+                required>
+            </div>
+            <div class="p-field">
+              <label for="edit-content">Content</label>
+              <textarea id="edit-content" pInputTextarea [(ngModel)]="selectedPublication.content" name="edit-content"
+                required rows="10"></textarea>
+            </div>
+            <div class="p-field">
+              <label for="edit-files">Select Files</label>
+              <input id="edit-files" type="file" (change)="onEditFileChange($event)" multiple class="file-input">
+              <label for="edit-files" class="custom-file-label">{{ selectedFilesText }}</label>
+            </div>
+            <div class="p-field">
+              <button type="submit" pButton label="Update Publication" class="ey-button p-mt-2"></button>
+            </div>
+          </form>
+        </div>
+      </p-dialog>
+
+      <p-dialog header="Confirm Deletion" [(visible)]="deleteConfirmationDialog" [modal]="true"
+        [style]="{ width: '30vw' }">
+        <div class="p-fluid">
+          <p>Are you sure you want to delete this publication?</p>
+          <button type="button" pButton label="Yes" class="ey-button ey-button-danger"
+            (click)="deletePublication()"></button>
+          <button type="button" pButton label="No" class="ey-button ey-button-secondary"
+            (click)="deleteConfirmationDialog = false"></button>
+        </div>
+      </p-dialog>
+
+      <p-dialog header="{{ fullTextTitle }}" [(visible)]="fullTextDialog" [modal]="true"
+        [style]="{ width: '80vw', maxWidth: '80vw' }">
+        <div class="p-fluid">
+          <p>{{ fullTextContent }}</p>
+        </div>
+        <p-footer>
+          <button type="button" pButton label="Close" class="ey-button" (click)="fullTextDialog = false"></button>
+        </p-footer>
+      </p-dialog>
+    </div>
+  </div>
+</div>

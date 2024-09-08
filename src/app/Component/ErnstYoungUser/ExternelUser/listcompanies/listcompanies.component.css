@@ -1,0 +1,88 @@
+.ey-main-content {
+  width: calc(100% - 250px); /* Assuming the sidebar width is 250px */
+  margin-left: 250px; /* Same as the sidebar width */
+  padding: 20px;
+}
+
+.ey-container {
+  width: 100%;
+  padding: 20px;
+}
+
+/* General EY Theme colors */
+.ey-theme {
+  background-color: rgb(255, 253, 253);
+  color: yellow;
+}
+
+/* Button styles for EY theme */
+.ey-button {
+  background-color: black;
+  color: yellow;
+  border: 1px solid yellow;
+}
+
+.ey-button:hover {
+  background-color: black;
+  color: yellow;
+}
+
+/* Dialog and input styles */
+.ey-dialog {
+  border: 2px solid yellow;
+}
+
+input[type="text"], input[type="email"] {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+/* Table Header with EY colors */
+th {
+  background-color: yellow;
+  color: black;
+}
+
+/* Icons in inputs */
+.p-input-icon-left .pi {
+  color: black;
+}
+
+/* Ensure the dropdown panel is above other elements */
+.p-dropdown .p-dropdown-panel {
+  z-index: 1001 !important; /* Adjust this value as necessary */
+  max-height: 300px;
+  overflow-y: auto; /* Ensure dropdown items are scrollable */
+  background-color: black; /* Ensure the panel background is black */
+  color: yellow; /* Ensure the text color is yellow */
+  border: 1px solid yellow; /* Add border for better visibility */
+}
+
+/* Ensure dropdown items are styled correctly */
+.p-dropdown .p-dropdown-item {
+  background-color: black; /* Ensure dropdown items have a black background */
+  color: yellow; /* Ensure dropdown item text is yellow */
+}
+
+.p-dropdown .p-dropdown-item:hover {
+  background-color: yellow;
+  color: black;
+}
+
+/* Ensure the modal content allows overflow to be visible */
+.p-dialog .p-dialog-content {
+  overflow: visible !important;
+}
+
+.ey-warning-icon {
+  color: yellow;
+  margin-right: 1rem;
+}
+
+
+@media (max-width: 1024px) {
+  .ey-container {
+    margin-left: 60px; /* Largeur réduite de la sidebar */
+  }
+}

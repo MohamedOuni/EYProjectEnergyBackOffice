@@ -1,0 +1,63 @@
+<app-sidebar></app-sidebar>
+<div class="main-content">
+  <p-table [value]="demoRequests" [paginator]="true" [rows]="5" [responsiveLayout]="'scroll'" class="p-datatable-customers">
+    <p-toast></p-toast>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Visiteur</th>
+        <th>Email</th>
+        <th>Surface (m²)</th>
+        <th>Payé (€)</th>
+        <th>Date Demo</th>
+        <th>Consultant</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-demo>
+      <tr>
+        <td>{{demo.visitorName}}</td>
+        <td>{{demo.email}}</td>
+        <td>{{demo.buildingSurface}}</td>
+        <td>{{demo.annualPayment}}</td>
+        <td>{{demo.selectedDate | date:'MMM d, y'}}</td>
+        <td>{{demo.consultantName || 'Non assigné'}}</td>
+        <td>
+          <span class="status-badge" [ngClass]="{'status-assigned': demo.status === 'Assignée', 'status-pending': demo.status === 'En attente'}">
+            {{demo.status}}
+          </span>
+        </td>
+        <td>
+          <button *ngIf="demo?.status !== 'Assignée'" pButton type="button" icon="pi pi-user-plus" label="Assigner" (click)="openModal(demo)"></button>
+          <button *ngIf="demo?.status === 'Assignée'" pButton type="button" icon="pi pi-pencil" label="Modifier" (click)="openModal(demo)"></button>
+          <button *ngIf="demo?.consultantId" pButton type="button" icon="pi pi-eye" (click)="openDetailsModal(demo)"></button>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<p-dialog header="Assigner/Modifier une démo" [(visible)]="displayModal" [modal]="true" [style]="{width: '600px'}">
+  <div class="modal-content">
+    <p-dropdown [options]="consultants" [(ngModel)]="selectedConsultantId" placeholder="Sélectionner un consultant"></p-dropdown>
+    <p-calendar [(ngModel)]="selectedDemoDate" placeholder="Sélectionner une date" [appendTo]="'body'" inputStyleClass="full-width-calendar"></p-calendar>
+    <input type="time" [(ngModel)]="selectedStartTime" placeholder="Heure de début">
+    <input type="time" [(ngModel)]="selectedEndTime" placeholder="Heure de fin">
+    <input type="text" [(ngModel)]="demoTitle" placeholder="Titre de la démo">
+    <div class="modal-buttons">
+      <button *ngIf="!selectedDemo.consultantId" pButton type="button" icon="pi pi-check" label="Assigner" (click)="assignConsultant()"></button>
+      <button *ngIf="selectedDemo.consultantId" pButton type="button" icon="pi pi-pencil" label="Modifier" (click)="updateDemoRequest()"></button>
+      <button pButton type="button" icon="pi pi-times" label="Annuler" (click)="closeModal()"></button>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog header="Détails de la démo" [(visible)]="displayDetailsModal" [modal]="true" [style]="{width: '400px'}">
+  <div class="modal-content">
+    <p><strong>Consultant :</strong> {{selectedDemo?.consultantName || 'Non assigné'}}</p>
+    <p><strong>Date :</strong> {{selectedDemo?.selectedDate | date:'MMM d, y'}}</p>
+    <p><strong>Heure de début :</strong> {{selectedDemo?.startTime}}</p>
+    <p><strong>Heure de fin :</strong> {{selectedDemo?.endTime}}</p>
+    <p><strong>Titre de la démo :</strong> {{selectedDemo?.demoTitle}}</p>
+  </div>
+</p-dialog>

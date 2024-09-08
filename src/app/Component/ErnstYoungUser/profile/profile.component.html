@@ -1,0 +1,40 @@
+<app-sidebar></app-sidebar>
+<div class="main-content" [ngStyle]="{'margin-left.px': sidebarWidth}">
+  <div class="profile-container">
+    <div class="profile-card">
+      <div class="profile-header">
+        <h2>Edit Profile</h2>
+      </div>
+      <div class="profile-details" *ngIf="user">
+        <div class="profile-item">
+          <label>Username</label>
+          <input type="text" [(ngModel)]="user.username" disabled>
+        </div>
+        <div class="profile-item">
+          <label>Email Address</label>
+          <input type="email" [(ngModel)]="user.email" disabled>
+        </div>
+        <div class="profile-item">
+          <label>First Name</label>
+          <input type="text" [(ngModel)]="user.firstName" disabled>
+        </div>
+        <div class="profile-item">
+          <label>Last Name</label>
+          <input type="text" [(ngModel)]="user.lastName" disabled>
+        </div>
+        <div class="profile-item">
+          <label>Phone Number</label>
+          <input type="text" [(ngModel)]="user.phone">
+        </div>
+        <button (click)="updatePhoneNumber()" class="save-btn">Save</button>
+      </div>
+    </div>
+    <div class="profile-sidebar">
+      <div class="profile-header2">
+        <img src="assets/images/avatar.png" alt="Avatar" class="profile-avatar">
+        <h2 style="color: black;">{{ user?.firstName }} {{ user?.lastName }}</h2>
+        <p style="color: black;">{{ GetUser() }}</p>
+      </div>
+    </div>
+  </div>
+</div>

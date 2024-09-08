@@ -1,0 +1,140 @@
+.ey-main-content {
+  width: calc(100% - 250px); 
+  margin-left: 250px;
+  padding: 20px;
+}
+
+.ey-container {
+  width: 100%;
+}
+
+.ey-theme {
+  background-color: rgb(255, 253, 253);
+  color: yellow;
+}
+
+.ey-button {
+  background-color: black;
+  color: yellow;
+  border: 1px solid yellow;
+}
+
+.ey-button:hover {
+  background-color: black;
+  color: yellow;
+}
+
+.ey-dialog {
+  border: 2px solid yellow;
+}
+
+input[type="text"], input[type="email"] {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 8px; /* Reduced padding for smaller input size */
+  margin-bottom: 1rem;
+  font-size: 0.9rem; /* Slightly smaller font size */
+}
+
+th, td {
+  font-size: 0.85rem; /* Smaller font size for table text */
+  padding: 8px 10px; /* Reduced padding for table cells */
+}
+
+th {
+  background-color: yellow;
+  color: black;
+}
+
+.p-input-icon-left .pi {
+  color: black;
+}
+
+.p-dropdown .p-dropdown-label {
+  background-color: white;
+  color: black;
+}
+
+.p-dropdown .p-dropdown-panel {
+  background-color: black;
+  color: yellow;
+}
+
+.p-button-rounded.p-button-warning,
+.p-button-rounded.p-button-info {
+  border-radius: 50%;
+}
+
+.ey-warning-icon {
+  color: yellow;
+  margin-right: 1rem;
+}
+
+.ey-modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: yellow;
+}
+
+.p-dropdown .p-dropdown-panel {
+  z-index: 1001 !important;
+}
+
+.p-dialog .p-dialog-content {
+  overflow: visible !important;
+}
+
+.p-dialog {
+  padding: 1rem !important;
+}
+
+.p-dialog .p-dialog-header {
+  background-color: black;
+  color: yellow;
+}
+
+.p-dialog .p-dialog-content {
+  background-color: #fff;
+  padding: 2rem;
+}
+
+.p-dialog .p-dialog-footer {
+  padding: 1.5rem;
+}
+
+.p-dialog .p-dialog-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.p-dialog .p-dialog-content form .p-field {
+  margin-bottom: 1rem;
+}
+
+.p-dialog .p-dialog-content form .p-field label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.p-dialog .p-dialog-content form .p-field input {
+  height: 35px; /* Smaller input field */
+  font-size: 0.9rem; /* Slightly smaller font size */
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.p-dialog .p-dialog-content .btn-primary {
+  background-color: #f6b221;
+  border-color: #f6b221;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem; /* Reduced padding */
+  transition: background-color 0.3s;
+  margin-top: 1.5rem;
+}
+
+.p-dialog .p-dialog-content .btn-primary:hover {
+  background-color: #e0a81c;
+}

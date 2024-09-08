@@ -1,0 +1,98 @@
+<aside class="sidebar" [class.closed]="isSidebarClosed">
+  <button class="toggle-btn" (click)="toggleSidebar()">☰</button>
+  <div class="profile">
+    <img src="/assets/images/avatar.png" alt="Profile Picture" class="profile-img"  routerLink="/profile">
+    <div class="profile-info">
+      <h2>EY Energy</h2>
+      <p>{{GetUser()}}</p>
+    </div>
+  </div>
+  <div class="separator"></div>
+  <nav class="menu">
+    <ul>
+      <li class="menu-item" *ngIf="AdminhasAccessToUsers()" >
+        <a routerLink="/dashboard">
+          <i class="pi pi-chart-line"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <li class="menu-item" *ngIf="AdminhasAccessToUsers()">
+        <a routerLink="/ListUser">
+          <i class="pi pi-folder"></i>
+          <span>EY Users</span>
+        </a>
+      </li>
+      <li class="menu-item" *ngIf="AdminhasAccessToUsers()">
+        <a routerLink="/ListCostumer">
+          <i class="pi pi-file"></i>
+          <span>Customers</span>
+        </a>
+      </li>
+    
+      <li class="menu-item" *ngIf="AdminhasAccessToUsers()">
+        <a routerLink="/publication">
+          <i class="pi pi-comment"></i>
+          <span>Publication</span>
+        </a>
+      </li>
+
+      <li class="menu-item" *ngIf="AdminhasAccessToUsers()">
+        <a routerLink="/claims">
+          <i class="pi pi-envelope"></i>
+          <span>Claims</span>
+        </a>
+      </li>
+
+      <li class="menu-item">
+        <a routerLink="/consultCompanies" *ngIf="ConsultanthasAccessToUsers()">
+          <i class="pi pi-chart-line"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+
+      <li class="menu-item" *ngIf="ManagerAccessToUsers()">
+        <a routerLink="/companies">
+          <i class="pi pi-briefcase"></i>
+          <span>Companies</span>
+        </a>
+      </li>
+      
+      <li class="menu-item" *ngIf="ManagerAccessToUsers()">
+        <a routerLink="/forms">
+          <i class="pi pi-file-edit"></i>
+          <span>Form</span>
+        </a>
+      </li>
+      
+   
+      <li class="menu-item" *ngIf="ManagerAccessToUsers()">
+        <a routerLink="/demonstration">
+          <i class="pi pi-briefcase"></i>
+          <span>Demo</span>
+        </a>
+      </li>
+
+      <li class="menu-item" *ngIf="ConsultanthasAccessToUsers()">
+        <a routerLink="/consultant-demos">
+          <i class="pi pi-briefcase"></i>
+          <span>Demo</span>
+        </a>
+      </li>
+
+
+      <li class="menu-item" *ngIf="ManagerConsultantAccessToUsers()">
+        <a routerLink="/chat">
+          <i class="pi pi-comments"></i>
+          <span>chat</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="logout">
+    <a (click)="logout()">
+      <i class="pi pi-sign-out"></i>
+      <span>Logout</span>
+    </a>
+  </div>
+</aside>

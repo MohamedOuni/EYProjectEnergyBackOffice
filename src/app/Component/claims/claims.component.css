@@ -1,0 +1,105 @@
+.main-content {
+  padding: 20px;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+.custom-grid {
+  gap: 20px;
+}
+
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 350px; /* Set the same height for all cards */
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  overflow: hidden; /* Ensure content stays within the card */
+  margin-bottom: 30px; /* Increase space between cards */
+}
+
+.card-header {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.card-body {
+  flex: 1;
+  overflow-y: auto; /* Ensures scrollable content if needed */
+ 
+}
+
+.custom-card{
+  display: flex;
+  justify-content: center;
+}
+
+
+.message-content {
+  white-space: pre-wrap; /* Maintains whitespace and wraps content */
+  word-wrap: break-word; /* Breaks long words */
+  max-height: 120px; /* Limit the height of the message content */
+  overflow-y: auto; /* Scroll if content is too long */
+}
+
+.card-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.validate-btn {
+  background-color: #fdd835; /* EY Yellow */
+  border: none;
+  color: #212529; /* Black */
+  font-weight: bold;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.validate-btn:hover {
+  background-color: #fbc02d; /* Darker Yellow */
+}
+
+.validated-claims-table {
+  margin-top: 50px; /* Increase space between table and other content */
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px; /* Add space between the table and other content */
+}
+
+.custom-dialog {
+  border-radius: 10px; /* Rounded corners for dialog */
+  width: 50vw; /* Larger modal */
+}
+
+.confirm-btn {
+  background-color: #fdd835; /* EY Yellow */
+  color: #212529; /* Black */
+  margin-right: 10px;
+}
+
+.confirm-btn:hover {
+  background-color: #fbc02d; /* Darker Yellow */
+}
+
+.cancel-btn {
+  background-color: #212529; /* Black */
+  color: #fdd835; /* EY Yellow */
+}
+
+.cancel-btn:hover {
+  background-color: #000000; /* Darker Black */
+}
+
+.spaced-card {
+  margin-bottom: 30px; 
+}
+
+.spaced-table {
+  margin-top: 50px; /* Ensure consistent space between cards and table */
+}

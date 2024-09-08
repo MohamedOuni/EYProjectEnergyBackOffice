@@ -1,0 +1,150 @@
+.ey-main-content {
+  width: calc(100% - 250px);
+  margin-left: 250px; 
+  padding: 20px;
+}
+
+.form-panel {
+  border-radius: 8px;
+  background: #8e8e8e;
+}
+
+.form-listbox {
+  width: 100%;
+}
+
+.ey-button {
+  background-color: black;
+  color: yellow;
+  border: 1px solid yellow;
+}
+
+.ey-pencil{
+  background-color: rgb(94, 94, 94);
+  color: rgb(255, 255, 255);
+  border: 1px solid  rgb(94, 94, 94);
+  width: 70px;
+  height: 40px;
+}
+
+.buttonform{
+  display: flex;
+  gap: 4px;
+}
+.ey-trush{
+  background-color: red;
+  color: white;
+  border: 1px solid red;
+  width: 70px;
+  height: 40px;
+}
+.question-item {
+  padding: 1em;
+  border: 1px solid #000000;
+  border-radius: 8px;
+  margin-bottom: 1em;
+}
+
+.question-item:hover,
+.question-item.selected-question {
+  background-color: #ecf0f1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question-title {
+  font-family: Inter;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #141414;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.option-title {
+  font-family: Inter;
+  font-size: 1.25em;
+  font-weight: bold;
+  color: #4f8ac5;
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sub-question-item{
+  font-family: Inter;
+  font-size: 1em;
+  font-weight: bold;
+}
+.options-container,
+.sub-questions-container {
+  margin-left: 1em;
+  padding-left: 1em;
+  border-left: 2px solid #ddd;
+}
+
+.option-item,
+.sub-question-item {
+  margin-top: 1em;
+}
+
+
+
+.add-section {
+  margin-top: 1.5em;
+}
+
+.question-input,
+.option-input,
+.next-question-input,
+.sub-question-input {
+  width: calc(100% - 1em);
+  padding: 0.75em;
+  margin-bottom: 1em;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+.question-dropdown {
+  width: 100%;
+  margin-bottom: 1em;
+  font-size: 1em;
+}
+
+.icon-button {
+  background-color: #050505;
+  color: #f9ff3d;
+  border: none;
+  padding: 0.75em;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+  font-size: 0,5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3em;
+  height: 3em;
+}
+
+.icon-button:hover {
+  background-color: #ffe53d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.p-button-rounded {
+  border: none;
+  padding: 0.6em;
+  margin:  0.2em;
+  cursor: pointer;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.containerForm{
+  display: flex;
+  justify-content: space-between;
+  margin: 6px;
+}

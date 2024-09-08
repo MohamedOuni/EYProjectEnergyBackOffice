@@ -1,0 +1,113 @@
+:host ::ng-deep .p-dialog .p-dialog-header {
+  background-color: #ffffff;
+  color: #000000;
+  font-weight: bold;
+}
+
+:host ::ng-deep .p-card {
+  margin-top: 20px;
+  width: 100%;
+}
+
+:host ::ng-deep .p-button {
+  background-color: #000000;
+  border-color: #ffd700;
+  color: #ffd700;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+:host ::ng-deep .p-button:hover {
+  background-color: #e5c100;
+  border-color: #e5c100;
+}
+
+:host ::ng-deep .p-card h2 {
+  font-size: 2em;
+  color: #ffd700;
+}
+
+:host ::ng-deep .p-grid {
+  margin: 20px;
+}
+
+:host ::ng-deep .p-col-6 {
+  padding: 50px;
+}
+
+:host ::ng-deep .p-col-6 > .p-card {
+  background-color: #f4f4f4;
+}
+
+.main-content {
+  padding: 20px;
+  margin-left: 250px;
+  background: linear-gradient(145deg, #ffffff, #f0f0f0);
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ffd700;
+  background-color: #000000;
+  padding: 20px;
+  border-radius: 5px;
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+.stats-container {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background-color: #000000;
+  color: #ffd700;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  flex: 1;
+  margin: 0 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.stat-header {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.stat-value {
+  font-size: 3em;
+  font-weight: bold;
+}
+
+.table-container {
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.table-header {
+  background-color: #000000;
+  color: #ffd700;
+  font-weight: bold;
+}
+.ey-button {
+  background-color: black;
+  color: yellow;
+  border: 1px solid yellow;
+}
+
+.ey-button:hover {
+  background-color: black;
+  color: yellow;
+}

@@ -1,0 +1,168 @@
+<app-sidebar></app-sidebar>
+<div class="ey-main-content">
+  <p-panel class="form-panel">
+    <div class="containerForm">
+    <button pButton label="Create Category" icon="pi pi-plus" class="ey-button p-mt-4" (click)="openCreateUserModal()"></button>
+    <div class="buttonform">
+    <button pButton  icon="pi pi-trash" class="ey-trush" (click)="deleteForm(selectedForm)" *ngIf="selectedForm"></button>
+    <button pButton icon="pi pi-pencil" class="ey-pencil"   (click)="openUpdateFormTitleDialog(selectedForm)" *ngIf="selectedForm"></button>
+  </div>
+  </div>
+    <p-listbox class="form-title"
+      [options]="forms" 
+      [(ngModel)]="selectedForm" 
+      (onChange)="selectForm($event)" 
+      optionLabel="title"
+      class="form-listbox">
+    </p-listbox>
+  </p-panel>
+
+  <p-panel  *ngIf="selectedForm">
+    <div header="Questions">
+      <div *ngFor="let question of selectedForm?.questions" class="question-item">
+        <h4 class="question-title" (click)="selectQuestion(question)">
+          {{ question?.text }}
+          <div>
+            <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-secondary p-ml-2" (click)="openUpdateQuestionDialog(question)"></button>
+            <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger p-ml-2" (click)="deleteQuestion(question)"></button>
+          </div>
+        </h4>
+
+        <div *ngIf="question?.options" class="options-container">
+          <div *ngFor="let option of question?.options" class="option-item">
+            <div class="option-title" (click)="selectOption($event, option)">
+              {{ option?.text }}
+              <div>
+                <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-secondary p-ml-2" (click)="openUpdateOptionDialog(option)"></button>
+                <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger p-ml-2" (click)="deleteOption(option)"></button>
+              </div>
+            </div>
+
+            <div *ngIf="option?.subQuestions" class="sub-questions-container">
+              <div *ngFor="let subQuestion of option?.subQuestions" class="sub-question-item" (click)="selectSubQuestionOfOption($event, subQuestion)">
+                {{ subQuestion?.text }}
+                <div *ngIf="subQuestion?.options" class="options-container">
+                  <div *ngFor="let subOption of subQuestion?.options" class="option-item">
+                    {{ subOption?.text }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="question?.subQuestions" class="sub-questions-container">
+          <div *ngFor="let subQuestion of question?.subQuestions" class="sub-question-item" (click)="selectSubQuestion($event, subQuestion)">
+            {{ subQuestion?.text }}
+            <div *ngIf="subQuestion?.options" class="options-container">
+              <div *ngFor="let subOption of subQuestion?.options" class="option-item" (click)="selectOption($event, subOption)">
+                {{ subOption?.text }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="add-section">
+      <p-panel header="Add Question" *ngIf="!selectedQuestion && !selectedOption" class="add-question-panel">
+        <input 
+          type="text" 
+          [(ngModel)]="newQuestion.text" 
+          placeholder="Question Text" 
+          class="question-input"/>
+        <p-dropdown 
+          [options]="[
+            { label: 'Textual', value: typeQuestion.Textual }, 
+            { label: 'Multiple Choice', value: typeQuestion.MultipleChoice },
+            { label: 'File', value: typeQuestion.File }
+          ]" 
+          [(ngModel)]="newQuestion.typeQuestion" 
+          placeholder="Select Type"
+          class="question-dropdown">
+        </p-dropdown>
+        <button pButton type="button" icon="pi pi-plus" (click)="addQuestion()" class="icon-button"></button>
+      </p-panel>
+
+      <p-panel header="Add Option" *ngIf="selectedQuestion && selectedQuestion.typeQuestion === typeQuestion.MultipleChoice && !selectedOption && !selectedSubQuestion" class="add-option-panel">
+        <input 
+          type="text" 
+          [(ngModel)]="newOption.text" 
+          placeholder="Option Text" 
+          class="option-input"/>
+        <button pButton type="button" icon="pi pi-plus" (click)="addOption()" class="icon-button"></button>
+      </p-panel>
+
+      <p-panel header="Set Sub-Question for Option" *ngIf="selectedOption" class="set-sub-question-panel">
+        <input 
+          type="text" 
+          [(ngModel)]="newSubQuestion.text" 
+          placeholder="Sub-Question Text" 
+          class="sub-question-input"/>
+        <p-dropdown 
+          [options]="[
+            { label: 'Textual', value: typeQuestion.Textual }, 
+            { label: 'Multiple Choice', value: typeQuestion.MultipleChoice },
+            { label: 'File', value: typeQuestion.File }
+          ]" 
+          [(ngModel)]="newSubQuestion.typeQuestion" 
+          placeholder="Select Type"
+          class="question-dropdown">
+        </p-dropdown>
+        <button pButton type="button" icon="pi pi-plus" (click)="setSubQuestion()" class="icon-button"></button>
+      </p-panel>
+
+      <p-panel header="Add Option to Sub-Question" *ngIf="selectedSubQuestionOfOption && selectedSubQuestionOfOption.typeQuestion === typeQuestion.MultipleChoice" class="add-option-to-sub-question-panel">
+        <input 
+            type="text" 
+            [(ngModel)]="newOption.text" 
+            placeholder="Option Text" 
+            class="option-input"/>
+        <button pButton type="button" icon="pi pi-plus" (click)="addOptionToSubQuestionOfOption()" class="icon-button"></button>
+      </p-panel>
+    </div>
+    <button pButton type="button" label="Auto Set Next Questions" (click)="autoSetNextQuestions()" class="ey-button"></button>
+  </p-panel>
+
+  <p-dialog header="Create Category" [(visible)]="createCategoryDialog" [modal]="true" [style]="{ width: '50vw' }">
+    <div class="p-fluid">
+      <form (ngSubmit)="onSubmit()" #title="ngForm">
+        <div class="p-field">
+          <label for="title">Title</label>
+          <input id="title" type="text" pInputText name="title" [(ngModel)]="form.title" required>
+        </div>
+        <button type="submit" pButton label="Create Category" [disabled]="title.invalid" class="p-mt-2"></button>
+      </form>
+    </div>
+  </p-dialog>
+
+  <p-dialog header="Update Question" [(visible)]="updateQuestionDialog" [modal]="true" [style]="{ width: '50vw' }">
+    <div class="p-fluid">
+      <div class="p-field" *ngIf="selectedQuestion">
+        <label for="questionText">Question Text</label>
+        <input id="questionText" type="text" pInputText [(ngModel)]="updateQuestionTitle">
+      </div>
+      <button pButton label="Update" (click)="updateQuestion()"></button>
+    </div>
+  </p-dialog>
+
+  <p-dialog header="Update Option" [(visible)]="updateOptionDialog" [modal]="true" [style]="{ width: '50vw' }">
+    <div class="p-fluid">
+      <div class="p-field" *ngIf="selectedOption">
+        <label for="optionText">Option Text</label>
+        <input id="optionText" type="text" pInputText [(ngModel)]="updateOptionTitle">
+      </div>
+      <button pButton label="Update" (click)="updateOption()"></button>
+    </div>
+  </p-dialog>
+
+  <p-dialog header="Update Form Title" [(visible)]="updateFormTitleDialog" [modal]="true" [style]="{ width: '50vw' }">
+    <div class="p-fluid">
+      <div class="p-field" *ngIf="selectedForm">
+        <label for="formTitle">Form Title</label>
+        <input id="formTitle" type="text" pInputText [(ngModel)]="updateFormTitleText">
+      </div>
+      <button pButton label="Update" (click)="updateFormTitle()"></button>
+    </div>
+  </p-dialog>
+</div>

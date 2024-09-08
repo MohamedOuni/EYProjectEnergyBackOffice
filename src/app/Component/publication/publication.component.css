@@ -1,0 +1,109 @@
+.ey-main-content {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+    padding: 20px;
+  }
+ /* Boutons EY - Noir avec texte jaune */
+.ey-button {
+    background-color: black;
+    color: yellow;
+    border: 1px solid yellow;
+}
+
+.ey-button:hover {
+    background-color: yellow;
+    color: black;
+    border-color: black;
+}
+
+.ey-button:active {
+    background-color: black;
+    color: yellow;
+    border-color: yellow;
+}
+
+.ey-button.p-button-rounded {
+    border-radius: 50%;
+}
+
+/* Styles pour les boutons de confirmation de suppression */
+.ey-button-danger {
+    background-color: black;
+    color: yellow;
+    border: 1px solid yellow;
+}
+
+.ey-button-danger:hover {
+    background-color: yellow;
+    color: black;
+    border-color: black;
+}
+
+/* Styles pour les boutons de confirmation */
+.ey-button-secondary {
+    background-color: black;
+    color: yellow;
+    border: 1px solid yellow;
+}
+
+.ey-button-secondary:hover {
+    background-color: yellow;
+    color: black;
+    border-color: black;
+}
+
+
+
+  .ey-container {
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .ey-theme {
+    background-color: rgb(255, 253, 253);
+    color: yellow;
+  }
+  
+  .p-input-icon-left .pi {
+    color: black;
+  }
+  
+  .p-dropdown .p-dropdown-label {
+    background-color: white;
+    color: black;
+  }
+  
+  .p-dropdown .p-dropdown-panel {
+    background-color: black;
+    color: yellow;
+  }
+  .file-input {
+    display: none;
+  }
+  
+  .custom-file-label {
+    display: inline-block;
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    margin-bottom: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .custom-file-label:hover {
+    background-color: #e9ecef;
+    border-color: #dae0e5;
+  }
+  
+  .custom-file-label::after {
+    display: none;
+  }
+  

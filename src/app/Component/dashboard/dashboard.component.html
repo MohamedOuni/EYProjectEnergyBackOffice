@@ -1,0 +1,29 @@
+<app-sidebar></app-sidebar>
+<div class="ey-main-content">
+  <div class="ey-charts-row">
+    <div class="ey-chart1">
+      <h2>File Type Statistics</h2>
+      <p-chart type="bar" [data]="fileTypeChartData" [options]="barChartOptions"></p-chart>
+    </div>
+    <div class="ey-chart2">
+      <h2>Review Statistics</h2>
+      <p-dropdown 
+      [options]="fileTypeOptions" 
+      [(ngModel)]="selectedFileType" 
+      (onChange)="onFileTypeChange($event.value)">
+      </p-dropdown>
+      <p-chart type="pie" [data]="reviewStatsChartData"></p-chart>
+    </div>
+  </div>
+  <div class="ey-cards">
+    <p-card class="ey-card">
+      <h3>Best Publications</h3>
+      <ul>
+        <li *ngFor="let fileType of fileTypeOptions">
+          <i class="pi pi-file" style="margin-right: 5px;"></i> 
+          {{ fileType.label }}: {{ bestPublications[fileType.value] ? bestPublications[fileType.value].title : 'No publication' }}
+        </li>
+      </ul>
+    </p-card>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+.ey-main-content {
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ey-chart1 {
+  width: 40%;
+  margin-bottom: 20px;
+}
+
+.ey-charts-row {
+  display: flex;
+  width: 100%;
+  gap: 250px;
+}
+
+.ey-chart2 {
+  width:23%;
+  margin-right: 20px;
+}
+
+.ey-cards {
+  display: flex;
+  width: 35%;
+}
+
+.ey-card {
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}

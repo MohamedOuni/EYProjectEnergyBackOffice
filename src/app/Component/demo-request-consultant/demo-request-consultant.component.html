@@ -1,0 +1,20 @@
+<app-sidebar></app-sidebar>
+<div class="main-content">
+  <div class="card-container">
+    <p-card *ngFor="let demo of demos" class="demo-card">
+      <ng-template pTemplate="header">
+        <div class="card-header">
+          <h3>{{ demo.demoTitle }}</h3>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="content">
+        <div class="card-content">
+          <p><i class="pi pi-calendar"></i> <strong>Date :</strong> {{ demo.selectedDate | date:'MMM d, y' }}</p>
+          <p><i class="pi pi-clock"></i> <strong>Heure :</strong> {{ demo.startTime }} - {{ demo.endTime }}</p>
+          <p><i class="pi pi-user"></i> <strong>Client :</strong> {{ demo.visitorName }}</p>
+          <p><i class="pi pi-envelope"></i> <strong>Email :</strong> {{ demo.email }}</p>
+        </div>
+      </ng-template>
+    </p-card>
+  </div>
+</div>

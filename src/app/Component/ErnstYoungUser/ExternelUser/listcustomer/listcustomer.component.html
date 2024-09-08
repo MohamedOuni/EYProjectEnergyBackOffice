@@ -1,0 +1,49 @@
+<app-sidebar></app-sidebar>
+<div class="ey-main-content">
+  <div class="ey-container">
+    <div class="card ey-theme">
+      <p-toast></p-toast>
+      <p-toolbar styleClass="mb-4">
+      </p-toolbar>
+        <p-table #dt [value]="users" [columns]="cols" responsiveLayout="scroll" [rows]="5"
+          [globalFilterFields]="['firstName', 'lastName', 'username', 'email', 'phone']" [paginator]="true"
+          [rowsPerPageOptions]="rowsPerPageOptions" [showCurrentPageReport]="true"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+          [(selection)]="SelectedUsers" selectionMode="multiple" [rowHover]="true" dataKey="id">
+          <ng-template pTemplate="caption">
+            <div class="flex flex-column md:flex-row md:justify-content-between md:align-items-center">
+              <h5 class="m-0">Manage Customers </h5>
+              <span class="block mt-2 md:mt-0 p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="onGlobalFilter(dt, $event)"
+                  placeholder="Search..." class="w-full sm:w-auto" />
+              </span>
+            </div>
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 20%">First Name</th>
+              <th style="width: 20%">Last Name</th>
+              <th style="width: 20%">User Name</th>
+              <th style="width: 20%">Email</th>
+              <th style="width: 20%">Phone</th>
+              <th style="width: 20%">Actions</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-user>
+            <tr>
+              <td>{{ user.firstName }}</td>
+              <td>{{ user.lastName }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.phone }}</td>
+              <td>
+                <button *ngIf="!user.isValid" pButton label="Validate" (click)="validUser(user.username)" class="ey-button"></button>
+                <span *ngIf="user.isValid" class="ey-validated" style="color: black;">Validated</span>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+  </div>
+</div>
